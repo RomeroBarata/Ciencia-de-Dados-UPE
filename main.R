@@ -39,7 +39,7 @@ gm %>%
   select(country, year, pop)
 
 # Exibir o nome de todos os países sem repetições.
-gm %>% 
+gm %>%
   select(country) %>% 
   distinct()
 
@@ -98,7 +98,7 @@ mtcars %>%
 mtcars %>% 
   ggplot(aes(x = wt, y = mpg)) + 
   geom_point() + 
-  geom_smooth(se = FALSE)
+  geom_smooth(method = "lm", se = TRUE)
 # ggvis
 mtcars %>% 
   ggvis(x = ~wt, y = ~mpg) %>% 

@@ -1,9 +1,16 @@
 ## Os próximos exercícios utilizam o conjunto de dados gapminder.csv
 ## Exercício 01 ----------------------------------------------------------------
 # Quantos países possuem cada continente?
+gm %>% 
+  group_by(continent) %>% 
+  summarise(count = n_distinct(country))
 
 ## Exercício 02 ----------------------------------------------------------------
 # Que país Europeu tinha o menor GDP per capita em 1997?
+gm %>% 
+  filter(continent == "Europe" & year == 1997) %>% 
+  arrange(gdpPercap) %>% 
+  slice(1)
 
 ## Exercício 03 ----------------------------------------------------------------
 # Qual era a expectativa média de vida nos anos 80 de cada continente?
@@ -18,11 +25,21 @@
 ## Exercício 06 ----------------------------------------------------------------
 # Quais os 10 países que possuem a maior correlação (em qualquer direção) entre 
 # expectativa de vida e GDP per capita?
+gm %>% 
+  group_by(country) %>% 
+  summarise(r = abs(cor(lifeExp, gdpPercap))) %>% 
+  arrange(desc(r)) %>% 
+  slice(1:10)
 
 ## Exercício 07 ----------------------------------------------------------------
 # Que combinações de continente e ano (excluindo a Ásia) possuem a maior 
 # população média considerando todos os seus países? Exiba os resultados em 
 # ordem decrescente de população média.
+gm %>% 
+  filter(continent != "Asia") %>% 
+  group_by(continent, year) %>% 
+  summarise(meanpop = mean(pop)) %>% 
+  arrange(desc(meanpop))
 
 ## Exercício 08 ----------------------------------------------------------------
 # Quais os 3 países que tiveram as estimativas de população mais consistentes 
@@ -32,6 +49,9 @@
 # Que registros indicam que a população de um país diminuiu em relação ao ano
 # anterior e a expectativa de vida aumentou em relação ao ano anterior? 
 # Dica: Pesquisar sobre 'Window' functions.
+gm %>% 
+  arrange(country, year) %>% 
+  filter(pop < lag(pop) & lifeExp > lag(lifeExp))
 
 ## Exercício 10 ----------------------------------------------------------------
 # Qual a expectativa média de vida de cada ano para o continente Africano?

@@ -6,6 +6,13 @@ ex01 <- data_frame(country = c("FR", "DE", "US"),
                    `2012` = c(6900, 6000, 14000), 
                    `2013` = c(7000, 6200, 13000))
 
+ex01 %>% 
+  gather(key = "year", value = "n", 2:4)
+
+ex01 %>% 
+  gather(key = "year", value = "n", 2:4) %>% 
+  spread(key = "year", value = "n")
+
 ## Exercício 02 ----------------------------------------------------------------
 # Identifique as variáveis no seguinte data frame e o transforme em um   
 # data frame "tidy". Retorne ao data frame original usando as funções unite e 
@@ -18,6 +25,16 @@ ex02 <- data_frame(id = 1:4,
                    work.T2 = runif(4),
                    home.T2 = runif(4))
 
+ex02 %>% 
+  gather(key = "loc_time", value = "n", 3:6) %>% 
+  separate(loc_time, into = c("loc", "time"), sep = "\\.")
+
+ex02 %>% 
+  gather(key = "loc_time", value = "n", 3:6) %>% 
+  separate(loc_time, into = c("loc", "time"), sep = "\\.") %>% 
+  unite(col = "loc_time", loc, time, sep = ".") %>% 
+  spread(key = "loc_time", value = "n")
+
 ## Exercício 03 ----------------------------------------------------------------
 # Leia a documentação das funções drop_na e replace_na. Para o seguinte data 
 # frame, faça:
@@ -29,9 +46,17 @@ ex03 <- data_frame(x = c(1, NA, 3, 4),
                    y = c(7, 7, NA, 8), 
                    z = c(NA, 1, 1, 3))
 
+ex03 %>% drop_na()
+
+ex03 %>% drop_na(x, y)
+
+ex03 %>% replace_na(list(x = 1, z = 3))
+
 ## Exercício 04 ----------------------------------------------------------------
 # Verifique o seguinte data frame. O que há de estranho nele? 
 # Leia a documentação da função separate_rows e resolva o problema.
 ex04 <- data_frame(ID = 1:4, 
                    Weight = c("55,58", "48,49,52", "60,58,63", "70"), 
                    Month = c("3,4", "5,7,8", "6,7,8", "1"))
+
+ex04 %>% separate_rows(Weight, Month, sep = ",", convert = TRUE)
