@@ -77,8 +77,8 @@ gm %>%
 # Para cada dia do ano, calcule o atraso médio de decolagem dos voos.
 
 ## Exercício 15 ----------------------------------------------------------------
-# Para os voos que partiram de JFK ou LGA, calcule a média e o número total de 
-# voos que chegaram dentro do tempo esperado.
+# Para os voos que partiram de JFK ou LGA, calcule o número de voos que 
+# chegaram dentro do tempo esperado.
 
 ## Exercício 16 ----------------------------------------------------------------
 # Qual a companhia aérea mais pontual quanto ao horário de decolagem? E quanto  
