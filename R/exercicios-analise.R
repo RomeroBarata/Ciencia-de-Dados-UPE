@@ -85,7 +85,7 @@ gm %>%
 # ao horário de chegada?
 
 ## Exercício 17 ----------------------------------------------------------------
-# Qual o destino que mais recebe passageiros no mês de Junho?
+# Qual o destino que recebe mais voos no mês de Junho?
 
 ## Exercício 18 ----------------------------------------------------------------
 # Na primeira quinzena de Março, quantos voos foram operados pela American 
