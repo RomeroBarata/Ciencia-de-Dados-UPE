@@ -102,7 +102,7 @@ mh %>%
 # Para imóveis com 2 quartos, exiba o preço médio por bairro. Ordene os 
 # resultados pelos bairros mais caros.
 mh %>% 
-  drop_na(Price) %>% 
+  drop_na(Price) %>%
   filter(Rooms == 2) %>% 
   group_by(Suburb) %>% 
   summarise(mean_price = mean(Price)) %>% 
@@ -153,6 +153,11 @@ flights %>%
   group_by(dest) %>% 
   summarise(n = n()) %>% 
   arrange(desc(n))
+
+# Equivalentemente
+flights %>% 
+  filter(month == 6) %>% 
+  count(dest, sort = TRUE)
 
 # Obs.: Essa é uma solução simples que não leva em conta os voos que foram 
 # cancelados.
